@@ -59,3 +59,5 @@ typings/
 
 #ide
 .idea/
+#package-index
+package-lock.json
