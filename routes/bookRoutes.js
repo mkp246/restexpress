@@ -30,7 +30,7 @@ bookRouter.use('/:bookId',function(req,res,next){
                 req.book= book;
                 next();
             } else {
-                res.statusCode(404).send("no book found");
+                res.status(404).send("no book found");
             }
         })
 });
@@ -54,6 +54,13 @@ bookRouter.route('/:bookId')
         if(req.body.read)req.book.read=req.body.read;
         req.book.save();
         res.json(req.book);
+    }).delete(function(req,res){
+        req.book.remove(function(err){
+            if(err)res.statusCode(500).send(err);
+            else{
+                res.status(204).end();
+            }
+        });
     });
     return bookRouter;
 }
